@@ -108,7 +108,7 @@ class SkrimeAPI
             case 'GET':
                 return $this->getHttpClient()->get($url, [
                     'verify' => false,
-                    'query'  => $params,
+                    'json'  => $params,
                 ]);
             case 'POST':
                 return $this->getHttpClient()->post($url, [

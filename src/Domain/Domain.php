@@ -61,7 +61,7 @@ class Domain
      */
     public function get(string $domainName)
     {
-        return $this->SkrimeAPI->post('domain/single', [
+        return $this->SkrimeAPI->get('domain/single', [
             'domain' => $domainName
         ]);
     }
@@ -73,7 +73,7 @@ class Domain
      */
     public function getAll()
     {
-        return $this->SkrimeAPI->post('domain/all');
+        return $this->SkrimeAPI->get('domain/all');
     }
 
     /**
