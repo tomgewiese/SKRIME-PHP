@@ -1,17 +1,17 @@
 <?php
 
-namespace Skrime\Network;
+namespace SKRIME\Network;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Skrime\SkrimeAPI;
+use SKRIME\API;
 
 class Network
 {
-    private $SkrimeAPI;
+    private $API;
 
-    public function __construct(SkrimeAPI $SkrimeAPI)
+    public function __construct(API $API)
     {
-        $this->SkrimeAPI = $SkrimeAPI;
+        $this->API = $API;
     }
 
     /**
@@ -24,7 +24,7 @@ class Network
      */
     public function getNoVNC(string $hostname, string $username, string $password, string $realm = "pam")
     {
-        return $this->SkrimeAPI->post('server/novnc', [
+        return $this->API->post('server/novnc', [
             'hostname' => $hostname,
             'username' => $username,
             'password' => $password,
@@ -39,7 +39,7 @@ class Network
      */
     public function getRdns(string $ipAddress)
     {
-        return $this->SkrimeAPI->get('server/rdns', [
+        return $this->API->get('server/rdns', [
             'ipAddress' => $ipAddress
         ]);
     }
@@ -52,7 +52,7 @@ class Network
      */
     public function setRdns(string $ipAddress, string $domain)
     {
-        return $this->SkrimeAPI->post('server/rdns', [
+        return $this->API->post('server/rdns', [
             'ipAddress' => $ipAddress,
             'rdns' => $domain
         ]);

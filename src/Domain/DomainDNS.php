@@ -1,17 +1,17 @@
 <?php
 
-namespace Skrime\Domain;
+namespace SKRIME\Domain;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Skrime\SkrimeAPI;
+use SKRIME\API;
 
 class DomainDNS
 {
-    private $SkrimeAPI;
+    private $API;
 
-    public function __construct(SkrimeAPI $SkrimeAPI)
+    public function __construct(API $API)
     {
-        $this->SkrimeAPI = $SkrimeAPI;
+        $this->API = $API;
     }
 
     /**
@@ -21,7 +21,7 @@ class DomainDNS
      */
     public function get(string $domainName)
     {
-        return $this->SkrimeAPI->get('domain/dns', [
+        return $this->API->get('domain/dns', [
             'domain' => $domainName
         ]);
     }
@@ -34,7 +34,7 @@ class DomainDNS
      */
     public function update(string $domainName, array $records)
     {
-        return $this->SkrimeAPI->post('domain/dns', [
+        return $this->API->post('domain/dns', [
             'domain' => $domainName,
             'records' => $records
         ]);

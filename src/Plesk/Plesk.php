@@ -1,17 +1,17 @@
 <?php
 
-namespace Skrime\Plesk;
+namespace SKRIME\Plesk;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Skrime\SkrimeAPI;
+use SKRIME\API;
 
 class Plesk
 {
-    private $SkrimeAPI;
+    private $API;
 
-    public function __construct(SkrimeAPI $SkrimeAPI)
+    public function __construct(API $API)
     {
-        $this->SkrimeAPI = $SkrimeAPI;
+        $this->API = $API;
     }
 
     /**
@@ -20,7 +20,7 @@ class Plesk
      */
     public function getAll()
     {
-        return $this->SkrimeAPI->get('plesk/all');
+        return $this->API->get('plesk/all');
     }
 
     /**
@@ -30,7 +30,7 @@ class Plesk
      */
     public function getSingle(string $productId)
     {
-        return $this->SkrimeAPI->get('plesk/all', [
+        return $this->API->get('plesk/all', [
             'productId' => $productId
         ]);
     }
@@ -41,7 +41,7 @@ class Plesk
      */
     public function getPriceList()
     {
-        return $this->SkrimeAPI->get('plesk/pricelist');
+        return $this->API->get('plesk/pricelist');
     }
 
     /**
@@ -53,7 +53,7 @@ class Plesk
      */
     public function order(bool $yearly, bool $tos = false, bool $cancellation = false)
     {
-        return $this->SkrimeAPI->post('plesk/order', [
+        return $this->API->post('plesk/order', [
             'duration' => $yearly ? 'yearly' : 'monthly',
             'tos' => $tos,
             'cancellation' => $cancellation
@@ -67,7 +67,7 @@ class Plesk
      */
     public function renew(string $productId)
     {
-        return $this->SkrimeAPI->post('plesk/renew', [
+        return $this->API->post('plesk/renew', [
             'productId' => $productId
         ]);
     }
@@ -79,7 +79,7 @@ class Plesk
      */
     public function getBinding(string $productId)
     {
-        return $this->SkrimeAPI->get('plesk/binding', [
+        return $this->API->get('plesk/binding', [
             'productId' => $productId
         ]);
     }
@@ -92,7 +92,7 @@ class Plesk
      */
     public function setBinding(string $productId, string $ipAddress)
     {
-        return $this->SkrimeAPI->post('plesk/binding', [
+        return $this->API->post('plesk/binding', [
             'productId' => $productId,
             'ipAddress' => $ipAddress
         ]);

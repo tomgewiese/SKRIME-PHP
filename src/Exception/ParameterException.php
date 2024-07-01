@@ -1,6 +1,6 @@
 <?php
 
-namespace Skrime\Exception;
+namespace SKRIME\Exception;
 
 class ParameterException extends \InvalidArgumentException
 {
