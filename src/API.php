@@ -1,17 +1,17 @@
 <?php
 
-namespace Skrime;
+namespace SKRIME;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
-use Skrime\Accounting\Account;
-use Skrime\Domain\Domain;
-use Skrime\Exception\ParameterException;
-use Skrime\Network\Network;
-use Skrime\Plesk\Plesk;
+use SKRIME\Accounting\Account;
+use SKRIME\Domain\Domain;
+use SKRIME\Exception\ParameterException;
+use SKRIME\Network\Network;
+use SKRIME\Plesk\Plesk;
 
-class SkrimeAPI
+class API
 {
     private $httpClient;
     private $credentials;
@@ -20,7 +20,7 @@ class SkrimeAPI
     private $networkHandler;
 
     /**
-     * SkrimeAPI constructor.
+     * API constructor.
      *
      * @param string    $token      API Token for all requests
      * @param null      $httpClient
@@ -44,7 +44,7 @@ class SkrimeAPI
             'headers'     => [
                 'Accept'       => 'application/json',
                 'Content-Type' => 'application/json',
-                'User-Agent' => 'SkrimeAPI/1.0',
+                'User-Agent' => 'API/1.0',
                 'Authorization' => 'Bearer ' . $this->apiToken,
             ],
             'allow_redirects' => false,

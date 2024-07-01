@@ -1,8 +1,8 @@
 <?php
 
-namespace Skrime;
+namespace SKRIME;
 
-use Skrime\Exception\ParameterException;
+use SKRIME\Exception\ParameterException;
 
 class Credentials
 {

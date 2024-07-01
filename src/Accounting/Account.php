@@ -1,17 +1,17 @@
 <?php
 
-namespace Skrime\Accounting;
+namespace SKRIME\Accounting;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Skrime\SkrimeAPI;
+use SKRIME\API;
 
 class Account
 {
-    private $SkrimeAPI;
+    private $API;
 
-    public function __construct(SkrimeAPI $SkrimeAPI)
+    public function __construct(API $API)
     {
-        $this->SkrimeAPI = $SkrimeAPI;
+        $this->API = $API;
     }
 
     /**
@@ -20,7 +20,7 @@ class Account
      */
     public function getBalance()
     {
-        return $this->SkrimeAPI->get('accounting/balance');
+        return $this->API->get('accounting/balance');
     }
 
 }

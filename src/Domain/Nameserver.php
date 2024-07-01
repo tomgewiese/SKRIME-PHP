@@ -1,34 +1,40 @@
 <?php
 
-namespace Skrime\Domain;
+namespace SKRIME\Domain;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Skrime\SkrimeAPI;
+use SKRIME\API;
 
 class Nameserver
 {
-    private $SkrimeAPI;
+    private $API;
 
-    public function __construct(SkrimeAPI $SkrimeAPI)
+    public function __construct(API $API)
     {
-        $this->SkrimeAPI = $SkrimeAPI;
+        $this->API = $API;
     }
 
     /**
-     * @param string $nameserver
+     * @param string $domainName
      * @return array|string
      * @throws GuzzleException
      */
     public function show(string $domainName)
     {
-        return $this->SkrimeAPI->get('domain/nameserver', [
+        return $this->API->get('domain/nameserver', [
             'domain' => $domainName
         ]);
     }
 
+    /**
+     * @param string $domainName
+     * @param array $nameservers
+     * @return array|string
+     * @throws GuzzleException
+     */
     public function update(string $domainName, array $nameservers)
     {
-        return $this->SkrimeAPI->post('domain/nameserver', [
+        return $this->API->post('domain/nameserver', [
             'domain' => $domainName,
             'nameserver' => $nameservers
         ]);

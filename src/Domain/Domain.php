@@ -1,18 +1,18 @@
 <?php
 
-namespace Skrime\Domain;
+namespace SKRIME\Domain;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Skrime\SkrimeAPI;
+use SKRIME\API;
 
 class Domain
 {
-    private $SkrimeAPI;
+    private $API;
     private $nameserverHandler;
     private $domainDNS;
-    public function __construct(SkrimeAPI $SkrimeAPI)
+    public function __construct(API $API)
     {
-        $this->SkrimeAPI = $SkrimeAPI;
+        $this->API = $API;
     }
 
     /**
@@ -20,7 +20,7 @@ class Domain
      */
     public function nameserver(): Nameserver
     {
-        if(!$this->nameserverHandler) $this->nameserverHandler = new Nameserver($this->SkrimeAPI);
+        if(!$this->nameserverHandler) $this->nameserverHandler = new Nameserver($this->API);
         return $this->nameserverHandler;
     }
 
@@ -29,7 +29,7 @@ class Domain
      */
     public function dns(): DomainDNS
     {
-        if(!$this->domainDNS) $this->domainDNS = new DomainDNS($this->SkrimeAPI);
+        if(!$this->domainDNS) $this->domainDNS = new DomainDNS($this->API);
         return $this->domainDNS;
     }
 
@@ -39,7 +39,7 @@ class Domain
      */
     public function getPricelist()
     {
-        return $this->SkrimeAPI->get('domain/pricelist');
+        return $this->API->get('domain/pricelist');
     }
 
     /**
@@ -49,7 +49,7 @@ class Domain
      */
     public function check(string $domainName)
     {
-        return $this->SkrimeAPI->post('domain/check', [
+        return $this->API->post('domain/check', [
             'domain' => $domainName
         ]);
     }
@@ -61,7 +61,7 @@ class Domain
      */
     public function get(string $domainName)
     {
-        return $this->SkrimeAPI->get('domain/single', [
+        return $this->API->get('domain/single', [
             'domain' => $domainName
         ]);
     }
@@ -73,7 +73,7 @@ class Domain
      */
     public function getAll()
     {
-        return $this->SkrimeAPI->get('domain/all');
+        return $this->API->get('domain/all');
     }
 
     /**
@@ -96,7 +96,7 @@ class Domain
      */
     public function register(string $domainName, string $firstname, string $lastname, string $street, string $number, string $postcode, string $city, string $state, string $country, string $email, string $phone, string $company = null, bool $tos = false, bool $cancellation = false)
     {
-        return $this->SkrimeAPI->post('domain/order', [
+        return $this->API->post('domain/order', [
             'domain' => $domainName,
             'contact' => [
                 "company" => $company,
@@ -137,7 +137,7 @@ class Domain
      */
     public function transfer(string $domainName, string $authcode, string $firstname, string $lastname, string $street, string $number, string $postcode, string $city, string $state, string $country, string $email, string $phone, string $company = null, bool $tos = false, bool $cancellation = false)
     {
-        return $this->SkrimeAPI->post('domain/order', [
+        return $this->API->post('domain/order', [
             'domain' => $domainName,
             'authcode' => $authcode,
             'contact' => [
@@ -165,7 +165,7 @@ class Domain
      */
     public function renew(string $domainName)
     {
-        return $this->SkrimeAPI->post('domain/renew', [
+        return $this->API->post('domain/renew', [
             'domain' => $domainName
         ]);
     }
@@ -177,7 +177,7 @@ class Domain
      */
     public function getAuthInfo(string $domainName)
     {
-        return $this->SkrimeAPI->get('domain/authcode', [
+        return $this->API->get('domain/authcode', [
             'domain' => $domainName
         ]);
     }
