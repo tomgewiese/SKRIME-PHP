@@ -39,7 +39,7 @@ class Domain
      */
     public function getPricelist()
     {
-        return $this->SkrimeAPI->post('domain/pricelist');
+        return $this->SkrimeAPI->get('domain/pricelist');
     }
 
     /**
