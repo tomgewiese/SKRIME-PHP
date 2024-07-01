@@ -16,7 +16,7 @@ class Credentials
     public function __construct(string $token)
     {
         $this->token = $token;
-        $this->url = "https://skrime.eu/api";
+        $this->url = "https://skrime.eu/api/";
     }
 
     public function __toString()

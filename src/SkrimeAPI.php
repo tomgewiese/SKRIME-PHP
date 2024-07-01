@@ -113,7 +113,7 @@ class SkrimeAPI
             case 'POST':
                 return $this->getHttpClient()->post($url, [
                     'verify' => false,
-                    'form_params'   => $params,
+                    'json'   => $params,
                 ]);
             default:
                 throw new ParameterException('Wrong HTTP method passed');
