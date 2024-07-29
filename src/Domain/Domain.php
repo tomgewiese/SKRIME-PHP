@@ -139,7 +139,7 @@ class Domain
     {
         return $this->API->post('domain/order', [
             'domain' => $domainName,
-            'authcode' => $authcode,
+            'authCode' => $authcode,
             'contact' => [
                 "company" => $company,
                 "firstname" => $firstname,
