@@ -36,7 +36,7 @@ class DomainContact
     {
         return $this->API->post('domain/contact', [
             'domain' => $domainName,
-            'records' => $contact
+            'contact' => $contact
         ]);
     }
 
