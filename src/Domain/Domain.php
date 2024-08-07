@@ -10,6 +10,8 @@ class Domain
     private $API;
     private $nameserverHandler;
     private $domainDNS;
+    private $domainContact;
+
     public function __construct(API $API)
     {
         $this->API = $API;
@@ -31,6 +33,15 @@ class Domain
     {
         if(!$this->domainDNS) $this->domainDNS = new DomainDNS($this->API);
         return $this->domainDNS;
+    }
+
+    /**
+     * @return DomainContact
+     */
+    public function contact(): DomainContact
+    {
+        if(!$this->domainContact) $this->domainContact = new DomainContact($this->API);
+        return $this->domainContact;
     }
 
     /**
@@ -94,7 +105,7 @@ class Domain
      * @return array|string
      * @throws GuzzleException
      */
-    public function register(string $domainName, string $firstname, string $lastname, string $street, string $number, string $postcode, string $city, string $state, string $country, string $email, string $phone, string $company = null, bool $tos = false, bool $cancellation = false)
+    public function register(string $domainName, string $firstname, string $lastname, string $street, string $number, string $postcode, string $city, string $state, string $country, string $email, string $phone, string $company = null, bool $tos = false, bool $cancellation = false, array $nameserver = [])
     {
         return $this->API->post('domain/order', [
             'domain' => $domainName,
@@ -111,6 +122,7 @@ class Domain
                 "email" => $email,
                 "phone" => $phone
             ],
+            "nameserver" => $nameserver,
             "tos" => $tos,
             "cancellation" => $cancellation,
         ]);
@@ -135,7 +147,7 @@ class Domain
      * @return array|string
      * @throws GuzzleException
      */
-    public function transfer(string $domainName, string $authcode, string $firstname, string $lastname, string $street, string $number, string $postcode, string $city, string $state, string $country, string $email, string $phone, string $company = null, bool $tos = false, bool $cancellation = false)
+    public function transfer(string $domainName, string $authcode, string $firstname, string $lastname, string $street, string $number, string $postcode, string $city, string $state, string $country, string $email, string $phone, string $company = null, bool $tos = false, bool $cancellation = false, array $nameserver = [])
     {
         return $this->API->post('domain/order', [
             'domain' => $domainName,
@@ -153,6 +165,7 @@ class Domain
                 "email" => $email,
                 "phone" => $phone
             ],
+            "nameserver" => $nameserver,
             "tos" => $tos,
             "cancellation" => $cancellation,
         ]);
