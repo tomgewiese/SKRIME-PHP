@@ -30,7 +30,7 @@ class Plesk
      */
     public function getSingle(string $productId)
     {
-        return $this->API->get('plesk/all', [
+        return $this->API->get('plesk/single', [
             'productId' => $productId
         ]);
     }
